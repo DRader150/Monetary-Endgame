@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monetary Endgame</title>
+<meta name="description" content="The sound money thesis: where the monetary system could be heading and the signals to watch.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0C1118;
+  --panel:#131A24;
+  --rule:#26313F;
+  --paper:#E8E6E1;
+  --dim:#8B97A6;
+  --amber:#E0A458;
+  --signal:#5DD39E;
+  --signal-dim:#1C3A31;
+  --gold:#D4AF37;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--paper);
+  font-family:'Newsreader',Georgia,serif;
+  font-size:18px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:720px;margin:0 auto;padding:0 24px 120px}
+
+/* ---------- nav ---------- */
+nav{
+  position:sticky;
+  top:0;
+  z-index:30;
+  background:var(--ink);
+  border-bottom:1px solid var(--rule);
+  padding:0;
+  overflow-x:auto;
+  white-space:nowrap;
+  scrollbar-width:none;
+}
+nav::-webkit-scrollbar{display:none}
+nav ul{
+  display:inline-flex;
+  gap:0;
+  list-style:none;
+  margin:0;
+  padding:0 16px;
+}
+nav ul li a{
+  display:inline-block;
+  padding:13px 14px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--dim);
+  text-decoration:none;
+  transition:color .15s;
+}
+nav ul li a:hover{color:var(--amber)}
+
+/* ---------- masthead ---------- */
+header{
+  border-bottom:1px solid var(--rule);
+  padding:64px 0 40px;
+  margin-bottom:8px;
+}
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--amber);
+  margin-bottom:22px;
+}
+h1{
+  font-size:clamp(34px,7vw,54px);
+  line-height:1.08;
+  font-weight:600;
+  margin:0 0 18px;
+  letter-spacing:-.02em;
+}
+.sub{color:var(--dim);font-size:19px;margin:0;max-width:48ch}
+
+/* ---------- master controls ---------- */
+.controls{
+  position:sticky;
+  top:43px;
+  z-index:20;
+  background:linear-gradient(var(--ink) 78%,transparent);
+  padding:16px 0 20px;
+  margin-bottom:20px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  background:var(--panel);
+  border:1px solid var(--rule);
+  border-radius:2px;
+  padding:11px 16px;
+  cursor:pointer;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  letter-spacing:.06em;
+  color:var(--dim);
+  transition:border-color .18s,color .18s;
+}
+.toggle:hover{border-color:var(--signal);color:var(--paper)}
+.toggle:focus-visible{outline:2px solid var(--signal);outline-offset:3px}
+.lamp{
+  width:9px;height:9px;border-radius:50%;
+  background:var(--rule);
+  transition:background .18s,box-shadow .18s;
+  flex:none;
+}
+body.strategy-on .lamp.s-lamp{background:var(--signal);box-shadow:0 0 10px var(--signal)}
+body.strategy-on .toggle.s-toggle{color:var(--paper);border-color:var(--signal-dim)}
+body.deep-on .lamp.d-lamp{background:var(--amber);box-shadow:0 0 10px var(--amber)}
+body.deep-on .toggle.d-toggle{color:var(--paper);border-color:rgba(224,164,88,.35)}
+
+/* ---------- structure ---------- */
+section{padding:40px 0;border-top:1px solid var(--rule);scroll-margin-top:110px}
+.part{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--amber);
+  margin-bottom:10px;
+}
+h2{font-size:30px;line-height:1.2;font-weight:600;margin:0 0 8px;letter-spacing:-.01em}
+h3{
+  font-size:15px;
+  font-family:'IBM Plex Mono',monospace;
+  font-weight:500;
+  letter-spacing:.04em;
+  color:var(--paper);
+  margin:34px 0 10px;
+}
+.deck{color:var(--dim);font-style:italic;margin:0 0 26px}
+p{margin:0 0 18px}
+strong{font-weight:600}
+ul{padding-left:20px;margin:0 0 18px}
+li{margin-bottom:7px}
+
+blockquote{
+  margin:26px 0;
+  padding:2px 0 2px 20px;
+  border-left:2px solid var(--amber);
+  color:var(--paper);
+}
+blockquote p{margin:0}
+
+table{width:100%;border-collapse:collapse;margin:22px 0;font-size:15px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--dim);
+  font-weight:500;
+}
+
+/* ---------- strategy inserts ---------- */
+.strategy{
+  display:none;
+  border:1px solid var(--signal-dim);
+  border-left:3px solid var(--signal);
+  background:rgba(93,211,158,.05);
+  padding:20px 22px;
+  margin:30px 0 10px;
+  border-radius:2px;
+}
+body.strategy-on .strategy{display:block;animation:rise .3s ease}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.strategy .tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--signal);
+  display:block;
+  margin-bottom:10px;
+}
+.strategy p{font-size:16.5px;margin-bottom:12px}
+.strategy p:last-child{margin-bottom:0}
+.strategy em{color:var(--signal);font-style:normal;font-weight:600}
+
+/* ---------- deep-dive blocks ---------- */
+.deep{
+  display:none;
+  border:1px solid rgba(224,164,88,.25);
+  border-left:3px solid var(--amber);
+  background:rgba(224,164,88,.04);
+  padding:20px 22px;
+  margin:20px 0 10px;
+  border-radius:2px;
+}
+body.deep-on .deep{display:block;animation:rise .3s ease}
+.deep .tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--amber);
+  display:block;
+  margin-bottom:10px;
+}
+.deep p{font-size:16.5px;margin-bottom:12px}
+.deep p:last-child{margin-bottom:0}
+.deep em{color:var(--amber);font-style:normal;font-weight:600}
+
+/* ---------- inline expanders ---------- */
+details{margin:18px 0}
+details summary{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  letter-spacing:.06em;
+  color:var(--dim);
+  cursor:pointer;
+  list-style:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border:1px solid var(--rule);
+  border-radius:2px;
+  transition:color .15s,border-color .15s;
+}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:'▶';font-size:8px;transition:transform .2s}
+details[open] summary::before{transform:rotate(90deg)}
+details summary:hover{color:var(--paper);border-color:var(--signal)}
+details .detail-body{
+  padding:16px 18px;
+  margin-top:8px;
+  border:1px solid var(--rule);
+  border-radius:2px;
+  font-size:16.5px;
+  line-height:1.65;
+}
+
+/* ---------- callout / slogan ---------- */
+.callout{
+  margin:32px 0;
+  padding:20px 24px;
+  border:1px solid var(--amber);
+  border-left:4px solid var(--amber);
+  background:rgba(224,164,88,.06);
+  border-radius:2px;
+  font-size:20px;
+  font-weight:600;
+  letter-spacing:-.01em;
+  color:var(--paper);
+}
+
+/* ---------- AI companion note ---------- */
+.ai-companion{
+  margin:28px 0;
+  padding:16px 20px;
+  border:1px solid var(--signal-dim);
+  background:rgba(93,211,158,.04);
+  border-radius:2px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12.5px;
+  line-height:1.65;
+  color:var(--dim);
+}
+.ai-companion strong{color:var(--signal);font-weight:600}
+
+/* ---------- resource box ---------- */
+.resource-box{
+  display:none;
+  border:1px solid var(--signal-dim);
+  border-left:3px solid var(--signal);
+  background:rgba(93,211,158,.05);
+  padding:18px 20px;
+  margin:16px 0;
+  border-radius:2px;
+}
+body.strategy-on .resource-box{display:block;animation:rise .3s ease}
+.resource-box .tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--signal);
+  display:block;
+  margin-bottom:10px;
+}
+.resource-box p{font-size:15.5px;margin-bottom:10px}
+.resource-box p:last-child{margin-bottom:0}
+.resource-box a{color:var(--signal)}
+
+/* ---------- glossary terms ---------- */
+.glossary-term{
+  margin-bottom:28px;
+  padding-bottom:28px;
+  border-bottom:1px solid var(--rule);
+}
+.glossary-term:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.g-word{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.04em;
+  color:var(--amber);
+  margin-bottom:6px;
+}
+.g-def{margin-bottom:10px}
+
+/* ---------- note ---------- */
+.note{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12.5px;
+  line-height:1.6;
+  color:var(--dim);
+  border:1px dashed var(--rule);
+  padding:14px 16px;
+  margin:24px 0;
+}
+
+/* ---------- timeline ---------- */
+.timeline{margin:22px 0}
+.tl-row{
+  display:grid;
+  grid-template-columns:140px 1fr;
+  gap:12px 20px;
+  padding:12px 0;
+  border-bottom:1px solid var(--rule);
+  font-size:15.5px;
+}
+.tl-row:last-child{border-bottom:none}
+.tl-era{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  letter-spacing:.06em;
+  color:var(--amber);
+  padding-top:3px;
+}
+.tl-country{font-weight:600;margin-bottom:3px}
+
+/* ---------- updates ---------- */
+.update-entry{
+  border-left:2px solid var(--rule);
+  padding:10px 0 10px 18px;
+  margin-bottom:18px;
+}
+.update-date{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  color:var(--amber);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.update-entry p{margin:0;font-size:16px}
+
+/* ---------- footer ---------- */
+footer{
+  border-top:1px solid var(--rule);
+  margin-top:40px;
+  padding-top:28px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  color:var(--dim);
+  line-height:1.7;
+}
+.live-link-box{
+  margin-bottom:20px;
+  padding:14px 16px;
+  border:1px solid var(--signal-dim);
+  background:rgba(93,211,158,.04);
+  border-radius:2px;
+}
+.live-link-box strong{color:var(--signal)}
+.live-link-box a{color:var(--paper);word-break:break-all}
+.live-link-box span{color:var(--dim);font-size:11px;display:block;margin-top:4px}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:600px){body{font-size:17px}.wrap{padding:0 18px 80px}h2{font-size:25px}.controls{gap:8px}.tl-row{grid-template-columns:1fr;gap:4px}}
+
+:root{--rust:#D9714E;--rust-dim:#4A2A20}
+a{color:inherit}
+.lbl{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;padding:2px 7px;border-radius:2px;margin-right:6px;vertical-align:2px;font-weight:600}
+.lbl.fact{color:var(--signal);border:1px solid var(--signal-dim);background:rgba(93,211,158,.06)}
+.lbl.thesis{color:var(--amber);border:1px solid rgba(224,164,88,.35);background:rgba(224,164,88,.06)}
+.lbl.thesis.rust{color:var(--rust);border-color:var(--rust-dim);background:rgba(217,113,78,.07)}
+.part.rust{color:var(--rust)}
+.signal,.step{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:20px 0;border-bottom:1px solid var(--rule)}
+.signal:last-child,.step:last-child{border-bottom:none}
+.sig-num,.step-num{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--amber);padding-top:4px}
+.step-num{color:var(--rust)}
+.sig-title,.step-title{font-weight:600;font-size:19px;margin-bottom:8px}
+.signal p,.step p{font-size:16.5px;margin-bottom:10px}
+.sig-watch{font-family:'IBM Plex Mono',monospace;font-size:12px!important;color:var(--dim)}
+.record-box{border:1px solid var(--rust-dim);border-left:3px solid var(--rust);background:rgba(217,113,78,.05);padding:20px 22px;margin:8px 0 22px;border-radius:2px}
+.record-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--rust);margin-bottom:10px}
+.record-box p{font-size:16.5px;margin-bottom:12px}
+.record-sig{font-style:italic;color:var(--dim);margin-bottom:0!important}
+@media(max-width:600px){.signal,.step{grid-template-columns:32px 1fr;gap:10px}}
+</style>
+<style>
+.series{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px;font-family:'IBM Plex Mono',ui-monospace,monospace}
+.series-label{width:100%;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8B97A6;margin-bottom:2px}
+.series-item{flex:1 1 180px;display:block;padding:9px 12px;border:1px solid #26313F;border-radius:2px;text-decoration:none;color:#8B97A6;font-size:12.5px;line-height:1.4}
+.series-item b{color:#E0A458;margin-right:4px}
+.series-item small{display:block;font-size:10.5px;opacity:.8;margin-top:2px}
+a.series-item:hover{border-color:#E0A458;color:inherit}
+.series-item.here{border-color:#E0A458;color:inherit}
+.next-box{margin:28px 0 22px;padding:16px 18px;border:1px solid #E0A458;border-radius:2px}
+.next-box .nb-tag{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#E0A458;margin-bottom:6px}
+.next-box a{font-size:19px;font-weight:600;color:inherit}
+.next-box p{margin:6px 0 0;font-size:15px;opacity:.85}
+</style>
+</head>
+<body>
+<nav>
+  <ul>
+    <li><a href="#intro">Home</a></li>
+    <li><a href="#replace">Replacing money</a></li>
+    <li><a href="#history">History rhymes</a></li>
+    <li><a href="#signals">Signals</a></li>
+    <li><a href="#connect">Tying it together</a></li>
+    <li><a href="https://drader150.github.io/The-Debt-Based-Monetary-System-for-Everyday-People/">The explainer ↗</a></li>
+    <li><a href="https://drader150.github.io/purchasing-power-lens/">Charts ↗</a></li>
+  </ul>
+</nav>
+
+<div class="wrap">
+
+<header id="intro">
+  <div class="eyebrow">Draft 0.1 &nbsp;·&nbsp; October 2026</div>
+  <h1>Monetary Endgame</h1>
+  <p class="sub">The sound money thesis — where this system could be heading, what history suggests, and the signals that would tell us it's happening.</p>
+  <div class="series" role="navigation" aria-label="Series"><div class="series-label">A three-part series · read in order, then loop back</div><a class="series-item" href="https://drader150.github.io/The-Debt-Based-Monetary-System-for-Everyday-People/"><b>1</b> The System You're Actually Living In<small>How it works</small></a><a class="series-item" href="https://drader150.github.io/purchasing-power-lens/"><b>2</b> Purchasing Power Lens<small>What it's already done</small></a><span class="series-item here" aria-current="page"><b>3</b> Monetary Endgame<small>Where it leads · you are here</small></span></div>
+</header>
+
+<section id="read-me-first">
+  <div class="part">Read me first</div>
+  <h2>What this document is, and isn't</h2>
+  <p>This is the companion to <a href="https://drader150.github.io/The-Debt-Based-Monetary-System-for-Everyday-People/" style="color:var(--amber)">The System You're Actually Living In</a>. That document sticks to mechanics you can verify. This one looks forward. It takes those verified mechanics and asks where they lead.</p>
+  <p>Forward-looking means some of this will be wrong. To keep the line clear, every claim here carries one of two labels:</p>
+  <p><span class="lbl fact">Fact</span> verifiable today against primary sources. &nbsp; <span class="lbl thesis">Thesis</span> reasoning or projection built on top of those facts.</p>
+  <p>If you haven't read the explainer, start there. This document assumes you know how money is created, what the Fed does, and why the system needs perpetual growth.</p>
+  <div class="ai-companion">
+    <strong>→ Read this with your AI open.</strong><br>
+    When a claim here strikes you as too strong or too weak, ask your favorite AI to argue the other side. A thesis is only worth holding if it survives the best counter-argument.
+  </div>
+</section>
+
+<section id="replace">
+  <div class="part">Strand I</div>
+  <h2>Could anything replace gold or Bitcoin?</h2>
+  <p class="deck">Two very different scarce assets, two very different threats.</p>
+
+  <h3>We already have a surplus of money</h3>
+  <p><span class="lbl fact">Fact</span> The world has roughly 180 national currencies. Creating a new one is trivial: any government can do it by decree. Copying Bitcoin is just as easy, since its code is open source and anyone can launch a technically identical clone. Thousands of such copies and variants already exist.</p>
+  <p><span class="lbl thesis">Thesis</span> Nobody is short of currencies. What's scarce is agreement — a large network of people, businesses, and institutions who have all decided to accept the same thing. That network is what gives money value, not the code or the authority behind it. AI making it even cheaper to build a perfect Bitcoin clone changes nothing, because a clone with no network is worth nothing. If anything, every worthless clone is more proof that the agreement was always the scarce part.</p>
+
+  <h3>What would it take for gold to lose its scarcity?</h3>
+  <p><strong>Threat one: price pulls in new supply.</strong> <span class="lbl fact">Fact</span> When gold's price rises, lower-grade deposits become worth mining, idle mines restart, and scrap jewelry gets recycled. Bitcoin's issuance schedule doesn't respond to price at all; the network's difficulty adjustment keeps new coins arriving on a fixed timetable no matter how many miners join. (The explainer covers this mechanism in its gold and Bitcoin sections.)</p>
+  <p><span class="lbl thesis">Thesis</span> This is a ceiling built into gold itself. The more successful gold is as a store of value, the more of it gets produced, which caps how far its price can run. Bitcoin's success instead makes its network more secure without creating a single extra coin. Over long horizons that one difference matters more than almost anything else in the comparison.</p>
+
+  <p><strong>Threat two: asteroid mining.</strong> <span class="lbl fact">Fact</span> Metal-rich asteroids exist; 16 Psyche is the most famous example. NASA's Psyche spacecraft launched in October 2023 to study it and is scheduled to arrive in 2029. It's a science mission. It does not mine anything. No technology exists today to mine an asteroid and return metal to Earth at meaningful scale.</p>
+  <p><span class="lbl thesis">Thesis</span> The threat is real in principle but likely many decades away at minimum, given current space technology and distances. There's also a self-limiting twist: the first company to bring back a huge gold haul would crash the price of what it brought back. Flooding the market destroys the payoff that justified the mission, so any real disruption would probably come gradually, not as one sudden collapse. Gold stays a reasonable long-duration bet against this particular threat.</p>
+
+  <h3>Where that leaves the two</h3>
+  <p><span class="lbl thesis">Thesis</span> Gold and Bitcoin do different jobs. Gold is low-volatility ballast — it tends to hold when Bitcoin is crashing — plus the analog fallback if power or internet networks are down and Bitcoin is unreachable. Bitcoin is the growth asset and the genuine opt-out from the system. On the growth job, there's essentially no realistic path where gold outgrows Bitcoin: gold's supply keeps expanding, Bitcoin's is capped. That doesn't make gold useless. It makes it insurance, not the engine.</p>
+  <div class="note">See it for yourself: <a href="https://drader150.github.io/purchasing-power-lens/" style="color:var(--amber)">Purchasing Power Lens</a> prices everyday costs (gas, electricity, a week of food) in dollars, gold ounces, and bitcoin. Flip between the three and watch which one makes life steadily more expensive and which ones make it cheaper over time.</div>
+
+  <details>
+    <summary>The honest counter-argument</summary>
+    <div class="detail-body">
+      <p>Gold has roughly 5,000 years of history as money. Bitcoin has under 20. Its fixed supply only matters while people keep agreeing to use it, and a severe, prolonged loss of confidence — a serious protocol flaw, a coordinated regulatory crackdown across major economies — would hit a young network harder than an ancient one. The thesis above is a bet that Bitcoin's agreement keeps strengthening. That's a bet, not a certainty, and sizing should reflect that.</p>
+    </div>
+  </details>
+</section>
+
+<section id="history">
+  <div class="part">Strand II</div>
+  <h2>History rhymes: China, silver, and the next standard</h2>
+  <p class="deck">The last time the world changed its monetary anchor, one major power bet the other way, and paid for it.</p>
+
+  <h3>The silver lesson</h3>
+  <p><span class="lbl fact">Fact</span> Starting in the early 1870s, the major Western economies moved from silver and bimetallic standards to the gold standard. As they did, they sold silver and stopped buying it, and silver's price fell steadily against gold for decades. China stayed on a silver-based monetary system. Its money lost purchasing power against its gold-standard trading partners, which added to its economic troubles. China didn't leave silver until its 1935 currency reform.</p>
+  <p><span class="lbl thesis">Thesis</span> Being on the wrong side of a monetary transition is a slow, compounding penalty. Nothing dramatic happens on any single day. You just lose a little purchasing power, year after year, to whoever chose the winning standard.</p>
+
+  <h3>The echo today</h3>
+  <p><span class="lbl fact">Fact</span> China's central bank has been adding gold to its reserves and gradually reducing its holdings of US Treasuries. China banned Bitcoin mining and crypto trading on the mainland in 2021.</p>
+  <p><span class="lbl thesis">Thesis</span> Commentators like Mark Moss draw a parallel: China may be repeating its silver-era mistake in reverse — building its position in gold while the world drifts toward Bitcoin, or toward a gold-and-Bitcoin mix that leans more toward Bitcoin over time. If that drift is real, China would again be anchored to the asset losing ground. This is a historical pattern, not a prediction. History rhymes; it doesn't repeat line for line.</p>
+
+  <h3>The dollar's place in the line of succession</h3>
+  <p><span class="lbl fact">Fact</span> Six powers have held the world's reserve currency since the 1450s: Portugal, Spain, the Netherlands, France, Britain, and the United States. Each reign lasted roughly 80 to 110 years. The dollar has held the role for roughly 80 to 100 years, depending on whether you count from the early 1920s or from the 1944 Bretton Woods agreement. (The explainer has the full timeline.)</p>
+  <p><span class="lbl thesis">Thesis</span> The open question isn't whether the dollar's reign ends, but what follows it. Every previous handoff went from one country's currency to another's. The next one might not go to a country at all. A neutral asset no government issues — gold, Bitcoin, or both — could take over part of that job. Handoffs are also slow and overlapping: sterling stayed important for decades after Britain lost its lead. A dollar decline, if it comes, would likely look like a gradual erosion, not an overnight collapse.</p>
+</section>
+
+<section id="signals">
+  <div class="part">Strand III</div>
+  <h2>Signals to watch</h2>
+  <p class="deck">What would tell us Bitcoin has become large enough to constrain the people running the money?</p>
+  <p>None of these signals proves anything on its own. Together they would show a shift from Bitcoin as something central banks can ignore to something they have to plan around. Next to each is where you'd see it first.</p>
+
+  <div class="signal">
+    <div class="sig-num">01</div>
+    <div>
+      <div class="sig-title">Major central banks hold Bitcoin in official reserves</div>
+      <p>Not one small country or a few companies — a G7-level central bank or sovereign wealth fund openly adding Bitcoin to its reserves as policy. That's the moment it stops being an outsider asset.</p>
+      <p class="sig-watch">Watch: central bank reserve disclosures, IMF reserve data, official announcements.</p>
+    </div>
+  </div>
+
+  <div class="signal">
+    <div class="sig-num">02</div>
+    <div>
+      <div class="sig-title">The Fed cites Bitcoin in a rate decision</div>
+      <p>A Fed official explicitly naming Bitcoin or crypto capital outflows as a factor in a policy decision. This would be the clearest sign of all: Bitcoin acting as a check on monetary policy. If planners have to worry that money will leave for an asset they can't dilute, that worry starts to discipline them.</p>
+      <p class="sig-watch">Watch: FOMC statements, meeting minutes, press conference transcripts. Commentators who parse Fed language (Mark Moss and Tom Bilyeu, among others) often catch this kind of shift early.</p>
+    </div>
+  </div>
+
+  <div class="signal">
+    <div class="sig-num">03</div>
+    <div>
+      <div class="sig-title">Regulatory panic instead of regulation</div>
+      <p>Measured rules are normal. Panic looks different: sudden capital controls, restrictions on moving money onto stablecoins or into Bitcoin, or attempts to ban self-custody outright. Governments don't panic over assets that don't threaten them.</p>
+      <p class="sig-watch">Watch: Treasury and SEC actions, emergency rules, legislation framed as urgent.</p>
+    </div>
+  </div>
+
+  <div class="signal">
+    <div class="sig-num">04</div>
+    <div>
+      <div class="sig-title">Bitcoin closes the gap on gold</div>
+      <p>Bitcoin's total market value approaching a meaningful share of gold's. Unlike the others, this one is easy to track continuously.</p>
+      <p class="sig-watch">Watch: market cap comparison sites that list gold and Bitcoin side by side, and the house-in-gold vs. house-in-bitcoin ratios on <a href="https://drader150.github.io/purchasing-power-lens/">Purchasing Power Lens</a>.</p>
+    </div>
+  </div>
+
+  <div class="signal">
+    <div class="sig-num">05</div>
+    <div>
+      <div class="sig-title">Japan is forced to sell Treasuries outright</div>
+      <p><span class="lbl fact">Fact</span> Japan holds over $1 trillion in US Treasuries. When it defends the yen, it can borrow dollars from the Fed against those Treasuries through the FIMA repo facility instead of selling them. That keeps a large holder from dumping bonds onto the market.</p>
+      <p><span class="lbl thesis">Thesis</span> The intervention itself isn't the signal. The signal is if that defense fails and Japan has to sell Treasuries outright at scale. That would push US bond yields up sharply, and a bond-market shock of that kind is the sort of event that sends money looking for hard assets — gold and Bitcoin.</p>
+      <p class="sig-watch">Watch: Treasury International Capital (TIC) data on foreign holdings, 10-year yield spikes, yen intervention news.</p>
+    </div>
+  </div>
+</section>
+
+<section id="connect">
+  <div class="part">Tying it together</div>
+  <h2>One question underneath all three</h2>
+  <p>Each strand asks the same question from a different angle: <strong>what happens to money when trusting the issuer becomes optional?</strong></p>
+  <p>Strand I says scarcity can't be faked: agreement is the scarce ingredient, and only one asset has a supply that ignores price. Strand II says monetary transitions are slow, and the people who misread them pay for decades. Strand III lists what to watch to see whether a transition is actually happening, or whether this is all just a thesis.</p>
+  <blockquote><p>You don't need to be certain about the endgame to prepare for it. You need to know which signals would change your mind, and to watch them.</p></blockquote>
+  <div class="note">Rough draft. The three strands may end up merged, reordered, or split into their own pages as this document develops. Everything labeled Thesis is open to revision as the signals come in.</div>
+</section>
+
+<footer>
+  <div class="next-box"><div class="nb-tag">Back to the start · Part 1</div><a href="https://drader150.github.io/The-Debt-Based-Monetary-System-for-Everyday-People/">The System You're Actually Living In →</a><p>Loop back with fresh eyes. The mechanics read differently once you've seen where they lead. Then use the strategy notes to decide what you'll actually do.</p></div>
+  <div class="live-link-box">
+    <strong>Start with the mechanics:</strong><br>
+    <a href="https://drader150.github.io/The-Debt-Based-Monetary-System-for-Everyday-People/">The System You're Actually Living In</a>
+    <span>This document builds on the explainer. If something here doesn't make sense, the explainer probably covers the mechanism underneath it.</span>
+  </div>
+  <div class="live-link-box">
+    <strong>See the numbers:</strong><br>
+    <a href="https://drader150.github.io/purchasing-power-lens/">Purchasing Power Lens</a>
+    <span>The explainer tells you how the system works, this page argues where it's heading, and the charts show you what it has already done to prices.</span>
+  </div>
+  Not financial advice. Theses are reasoning, not predictions. Verify every Fact<br>
+  against primary sources: FRED, Federal Reserve releases, Treasury TIC data, IMF reserve data.<br><br>
+  <span style="color:var(--amber);">Draft 0.1 &nbsp;·&nbsp; October 2026</span>
+</footer>
+
+</div>
+
+</body>
+</html>
